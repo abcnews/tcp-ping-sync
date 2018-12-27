@@ -1,0 +1,31 @@
+{
+  "name": "tcp-ping-sync",
+  "version": "1.0.0-pre",
+  "description": "TCP ping utility with a synchronous API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "test:debug": "node test.js --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/colingourlay/tcp-ping-sync.git"
+  },
+  "keywords": [
+    "ping",
+    "probe",
+    "sync",
+    "tcp",
+    "net",
+    "socket"
+  ],
+  "author": "Colin Gourlay <colin@colin-gourlay.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colingourlay/tcp-ping-sync/issues"
+  },
+  "homepage": "https://github.com/colingourlay/tcp-ping-sync#readme",
+  "dependencies": {
+    "sync-socket": "^1.1.0"
+  }
+}
