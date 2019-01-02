@@ -1,4 +1,4 @@
-<div align="center"><h1>💻⌛️⇄🌏<br>tcp-ping-sync</h1><p><small>TCP ping utility with a synchronous API</small></p></div>
+<div align="center"><h1>tcp-ping-sync</h1><p>💻⌛️⇄🌏<br><small>TCP ping utility with a synchronous API</small></p></div>
 
 ## Install
 
