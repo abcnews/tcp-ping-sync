@@ -1,5 +1,6 @@
 const assert = require('assert');
 const http = require('http');
+const SegfaultHandler = require('segfault-handler');
 const { ping, probe } = require('./');
 
 const IS_DEBUG = process.argv.includes('--debug');
@@ -10,6 +11,8 @@ const UNREACHABLE_REMOTE_HOST = 'nope.lol.wtf';
 const UNREACHABLE_LOCAL_PORT = 6789;
 
 const errCount = x => x.results.filter(y => y.err).length;
+
+SegfaultHandler.registerHandler('segfault.log');
 
 TEMPORARY_LOCAL_SERVER.listen(TEMPORARY_LOCAL_SERVER_PORT, () => {
   const localPingA = ping({ port: TEMPORARY_LOCAL_SERVER_PORT });
