@@ -37,8 +37,7 @@ console.log(response);
 //   settings: {
 //     host: 'google.com',
 //     port: 443,
-//     attempts: 10,
-//     timeout: 5000
+//     attempts: 10
 //   }
 // }
 
@@ -79,12 +78,11 @@ const {
     avg: Number, //     Average response time
     stddev: Number //   Standard deviation
   },
-  settings: Object //   Request arguments
+  settings: Object //   Resolved arguments (host, port & attempts)
 } = ping({
   host: String, //      Hostname/IP address   (default: 'localhost')
   port: Number, //      Port number           (default: 80)
-  attempts: Number, //  Noumber of attempts   (default: 10)
-  timeout: Number //    Max wait milliseconds (default: 5000)
+  attempts: Number //   Number of attempts   (default: 10)
 });
 ```
 
@@ -92,8 +90,8 @@ More usage examples can be found in the tests (`test.js`), which can be run with
 
 ### Warning
 
-Pinging the network synchronously is considerably slower than asynchronously, because of the [workaround](https://github.com/JacobFischer/sync-socket) used in the underlying dependencies. Use this only if you _really need_ a synchronous response. If async is acceptable, you'll probably want to use [`tcp-ping`](https://github.com/apaszke/tcp-ping) instead.
+This library has an optional dependency ([netlinkwrapper](https://github.com/JacobFischer/netlinkwrapper)) which needs to compile native modules. If your platform fails to compile it, an alternative (but [slower](https://github.com/JacobFischer/sync-socket)) dependency will be used. In this case, you should only consider using this library if you _really need_ a synchronous response. If async is acceptable, you'll probably want to use [`tcp-ping`](https://github.com/apaszke/tcp-ping) instead.
 
 ## Credits
 
-This work is inspired by Adam Paszke's [`tcp-ping`](https://github.com/apaszke/tcp-ping) (MIT; © 2014), and uses Jacob Fischer's [`sync-socket`](https://github.com/JacobFischer/sync-socket) (MIT; © 2016) to simulate synchronous network sockets in Node.
+This work is inspired by Adam Paszke's [`tcp-ping`](https://github.com/apaszke/tcp-ping) (MIT; © 2014). Thanks also to Jacob Fischer for working out how to simulate synchronous network sockets in Node and implementing the solution as [sync-socket](https://github.com/JacobFischer/sync-socket).

@@ -11,7 +11,7 @@ const UNREACHABLE_LOCAL_PORT = 6789;
 
 const errCount = x => x.results.filter(y => y.err).length;
 
-TEMPORARY_LOCAL_SERVER.listen(TEMPORARY_LOCAL_SERVER_PORT, async () => {
+TEMPORARY_LOCAL_SERVER.listen(TEMPORARY_LOCAL_SERVER_PORT, () => {
   const localPingA = ping({ port: TEMPORARY_LOCAL_SERVER_PORT });
   if (IS_DEBUG) console.info('localPingA', localPingA);
   assert(errCount(localPingA) === 0, `localhost:${TEMPORARY_LOCAL_SERVER_PORT} should always be reachable`);

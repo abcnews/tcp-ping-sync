@@ -27,5 +27,8 @@
   "homepage": "https://github.com/colingourlay/tcp-ping-sync#readme",
   "dependencies": {
     "sync-socket": "^1.1.0"
+  },
+  "optionalDependencies": {
+    "netlinkwrapper": "^1.1.1"
   }
 }
