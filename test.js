@@ -11,11 +11,6 @@ const UNREACHABLE_LOCAL_PORT = 6789;
 
 const errCount = x => x.results.filter(y => y.err).length;
 
-if (IS_DEBUG) {
-  const SegfaultHandler = require('segfault-handler');
-  SegfaultHandler.registerHandler('segfault.log');
-}
-
 TEMPORARY_LOCAL_SERVER.listen(TEMPORARY_LOCAL_SERVER_PORT, () => {
   const localPingA = ping({ port: TEMPORARY_LOCAL_SERVER_PORT });
   if (IS_DEBUG) console.info('localPingA', localPingA);
