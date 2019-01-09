@@ -1,6 +1,6 @@
 {
   "name": "tcp-ping-sync",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "TCP ping utility with a synchronous API",
   "main": "index.js",
   "scripts": {
