@@ -1,25 +1,26 @@
-const SyncSocket = require('sync-socket');
-
-const WORKER_PORT = 7962;
+const Socket = require('./socket');
 
 const hrtimeToMS = x => (x[0] * 1e9 + x[1]) / 1e6;
 const range = x => Array.apply(null, { length: x }).map(Number.call, Number);
 
-const ping = (module.exports.ping = function({ host = 'localhost', port = 80, attempts = 10, timeout = 5000 }) {
+const ping = (module.exports.ping = function({ host = 'localhost', port = 80, attempts = 10 }) {
   const results = range(attempts).map(seq => {
-    const socket = new SyncSocket({ workerPort: WORKER_PORT, timeout });
+    const socket = new Socket();
     const start = process.hrtime();
     let err;
 
     try {
-      socket.connect({ host, port });
+      socket.connect(
+        port,
+        host
+      );
     } catch (_err) {
       err = _err;
     }
 
     const time = hrtimeToMS(process.hrtime(start));
 
-    socket.destroy();
+    socket.disconnect();
 
     if (err) {
       return { seq, time: Infinity, err };
@@ -44,8 +45,7 @@ const ping = (module.exports.ping = function({ host = 'localhost', port = 80, at
     settings: {
       host,
       port,
-      attempts,
-      timeout
+      attempts
     }
   };
 });

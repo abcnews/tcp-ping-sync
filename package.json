@@ -1,6 +1,6 @@
 {
   "name": "tcp-ping-sync",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.1",
   "description": "TCP ping utility with a synchronous API",
   "main": "index.js",
   "scripts": {
@@ -27,5 +27,11 @@
   "homepage": "https://github.com/colingourlay/tcp-ping-sync#readme",
   "dependencies": {
     "sync-socket": "^1.1.0"
+  },
+  "optionalDependencies": {
+    "netlinkwrapper": "^1.1.1"
+  },
+  "devDependencies": {
+    "segfault-handler": "^1.0.1"
   }
 }
