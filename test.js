@@ -1,10 +1,10 @@
 const assert = require('assert');
-const http = require('http');
+const net = require('net');
 const { ping, probe } = require('./');
 
 const IS_DEBUG = process.argv.includes('--debug');
 const TEMPORARY_LOCAL_SERVER_PORT = 2697;
-const TEMPORARY_LOCAL_SERVER = http.createServer((req, res) => res.end(200));
+const TEMPORARY_LOCAL_SERVER = new net.Server(socket => socket.end());
 const REACHABLE_REMOTE_HOST = 'google.com';
 const UNREACHABLE_REMOTE_HOST = 'nope.lol.wtf';
 const UNREACHABLE_LOCAL_PORT = 6789;
@@ -49,6 +49,7 @@ TEMPORARY_LOCAL_SERVER.listen(TEMPORARY_LOCAL_SERVER_PORT, () => {
   if (IS_DEBUG) console.info('remoteProbeB', remoteProbeB);
   assert(!remoteProbeB, `${UNREACHABLE_REMOTE_HOST}:80 should be unreachable`);
 
-  TEMPORARY_LOCAL_SERVER.close();
-  process.exit();
+  TEMPORARY_LOCAL_SERVER.close(() => {
+    process.exit(0);
+  });
 });
